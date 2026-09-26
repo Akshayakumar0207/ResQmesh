@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-abyss text-ink font-body antialiased;
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  ::selection {
+    background: rgba(34, 245, 211, 0.25);
+  }
+  *:focus-visible {
+    outline: 2px solid #22F5D3;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Glassmorphism panels ─────────────────────────────────────────── */
+  .glass-panel {
+    @apply relative rounded-2xl border border-white/[0.08] transition-all duration-300 ease-out;
+    background: linear-gradient(165deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.5), inset 0 1px 0 0 rgba(255,255,255,0.06);
+  }
+  .glass-panel:hover {
+    @apply border-signal/30;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,245,211,0.12), 0 0 32px -8px rgba(34,245,211,0.25), inset 0 1px 0 0 rgba(255,255,255,0.1);
+  }
+
+  .glass-panel-solid {
+    @apply relative rounded-2xl border border-white/[0.1];
+    background: linear-gradient(165deg, rgba(19,28,44,0.97), rgba(10,15,24,0.98));
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7), inset 0 1px 0 0 rgba(255,255,255,0.07);
+  }
+
+  .console-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #1E2C40 transparent;
+  }
+  .console-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .console-scroll::-webkit-scrollbar-thumb {
+    background: #1E2C40;
+    border-radius: 999px;
+  }
+
+  /* ── Buttons ──────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl text-abyss font-semibold px-4 py-2.5 text-sm overflow-hidden transition-all duration-300 ease-out active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none;
+    background: linear-gradient(135deg, #22F5D3, #7CFFEA 45%, #8B5CF6);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 20px -4px rgba(34,245,211,0.4);
+  }
+  .btn-primary:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 8px 32px -6px rgba(34,245,211,0.55), 0 0 24px -4px rgba(139,92,246,0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 text-ink font-medium px-4 py-2.5 text-sm transition-all duration-300 ease-out active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+  }
+  .btn-secondary:hover {
+    @apply border-signal/50 text-signal;
+    background: rgba(34,245,211,0.06);
+    box-shadow: 0 0 20px -6px rgba(34,245,211,0.35);
+    transform: translateY(-2px);
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-severity-critical/15 border border-severity-critical/40 text-severity-critical font-medium px-4 py-2.5 text-sm transition-all duration-300 ease-out active:scale-[0.97];
+  }
+  .btn-danger:hover {
+    @apply bg-severity-critical/25;
+    box-shadow: 0 0 20px -6px rgba(255,59,78,0.45);
+    transform: translateY(-2px);
+  }
+
+  /* ── Inputs ───────────────────────────────────────────────────────── */
+  .input-console {
+    @apply w-full rounded-xl border border-white/10 px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-faint outline-none transition-all duration-200;
+    background: rgba(255,255,255,0.03);
+  }
+  .input-console:focus {
+    @apply border-signal/60;
+    background: rgba(34,245,211,0.04);
+    box-shadow: 0 0 0 4px rgba(34,245,211,0.1);
+  }
+  .label-console {
+    @apply text-xs font-medium uppercase tracking-wider text-ink-dim mb-1.5 block;
+  }
+  .eyebrow {
+    @apply text-xs font-mono uppercase tracking-[0.2em] text-signal;
+  }
+
+  /* ── Gradient text + shimmer ──────────────────────────────────────── */
+  .text-aurora-gradient {
+    background: linear-gradient(135deg, #22F5D3, #C4B5FD 60%, #8B5CF6);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shimmer-text {
+    background: linear-gradient(100deg, currentColor 35%, #7CFFEA 50%, currentColor 65%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* ── Ambient background blobs (glassmorphism needs color behind it) ─ */
+  .ambient-blob {
+    position: fixed;
+    border-radius: 9999px;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Map tile fallback (no CARTO API key configured) ────────────────
+     CARTO's dark_all tiles require a free key (see MapView.tsx). Without
+     one we load plain OpenStreetMap tiles and invert them so the map still
+     roughly matches the app's dark theme, with no signup required. */
+  .map-fallback-dark .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.88);
+  }
+}
