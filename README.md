@@ -1,6 +1,6 @@
 # ResQMesh — AI-Powered Emergency Resource Coordination Network
 
-**Prototype for LT HackFest 2026.**
+**Prototype for TATA Social Innovator Challenge 2026.**
 *"ResQMesh doesn't just find help. It intelligently coordinates the resources already around us."*
 
 > Prototype for emergency coordination and community resource allocation.
